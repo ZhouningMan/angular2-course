@@ -1,0 +1,57 @@
+<div class="row">
+    <div class="col-md-6 well">
+        <form  [ngFormModel]="form">
+            <fieldset class="form-group">
+                <legend>User</legend>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" placeholder="name" ngControl="name" #name="ngForm">
+                    <div *ngIf="name.touched && name.errors">
+                        <div *ngIf="name.errors.required" class="alert alert-danger">
+                            Name is required
+                        </div>
+                        <div *ngIf="name.errors.minlength" class="alert alert-danger">
+                            Minimum length for name is  {{name.errors.minlength.requiredLength}}.
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="email" ngControl="email" #email="ngForm">
+                    <div *ngIf="email.touched && email.errors">
+                        <div *ngIf="email.errors.required" class="alert alert-danger">
+                            Email is required
+                        </div>
+                        <div *ngIf="email.errors.validateEmail" class="alert alert-danger">
+                            Input email invalid. Email should look like: {{email.errors.validateEmail.example}}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="text" class="form-control" id="phone" placeholder="phone">
+                </div>
+            </fieldset>
+            <fieldset class="form-group">
+                <legend>Address</legend>
+                <div class="form-group">
+                    <label for="street">Street</label>
+                    <input type="text" class="form-control" id="street" placeholder="street">
+                </div>
+                <div class="form-group">
+                    <label for="suite">Suite</label>
+                    <input type="text" class="form-control" id="suite" placeholder="suite">
+                </div>
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <input type="text" class="form-control" id="city" placeholder="city">
+                </div>
+                <div class="form-group">
+                    <label for="zipCode">ZipCode</label>
+                    <input type="text" class="form-control" id="zipCode" placeholder="zipCode">
+                </div>
+            </fieldset>
+            <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Save</button>
+        </form>
+    </div>
+</div>
